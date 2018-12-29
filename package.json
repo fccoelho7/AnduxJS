@@ -2,6 +2,10 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=11.3.0",
+    "npm": ">=6.4.1"
+  },
   "dependencies": {
     "antd": "^3.11.6",
     "immer": "^1.9.3",
