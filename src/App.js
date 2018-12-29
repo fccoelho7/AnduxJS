@@ -4,6 +4,8 @@ import { Layout, Menu } from "antd";
 import "antd/dist/antd.css";
 import logo from "./logo.svg";
 
+import "./App.css";
+
 class App extends Component {
   render() {
     const { Header, Content, Footer } = Layout;

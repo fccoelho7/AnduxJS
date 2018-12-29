@@ -1,27 +1,45 @@
 import React, { Component } from "react";
-import { Table, Button } from "antd";
+import { Button } from "antd";
+import List from "./components/List";
+import Edit from "./components/Edit";
+import Create from "./components/Create";
 
 class View extends Component {
-  render() {
-    const { todos, create } = this.props;
+  state = {
+    formData: null,
+    editing: null,
+    showModal: false
+  };
 
-    const columns = [
-      {
-        title: "ID",
-        dataIndex: "id",
-        key: "id"
-      },
-      {
-        title: "Title",
-        dataIndex: "title",
-        key: "title"
-      },
-      {
-        title: "Done",
-        dataIndex: "done",
-        key: "done"
-      }
-    ];
+  openModal = (type = "create", index = null) => {
+    this.setState({
+      formData: this.props.todos[index],
+      editing: index,
+      showModal: type
+    });
+  };
+
+  closeModal = () => {
+    this.setState({ showModal: false, formData: null, editing: null });
+  };
+
+  closeModalAndSave = () => {
+    const { create, update } = this.props;
+    const { editing, formData } = this.state;
+
+    if (editing != null) {
+      update(editing, formData);
+    } else {
+      create(formData);
+    }
+
+    this.closeModal();
+  };
+
+  editFormData = formData => this.setState({ formData });
+
+  render() {
+    const { todos, remove } = this.props;
 
     return (
       <div>
@@ -29,14 +47,47 @@ class View extends Component {
         <Button
           type="primary"
           className="create-todo"
-          onClick={() => {
-            const id = Math.floor(Math.random() * 101);
-            create({ id, title: `Item ${id}`, done: false });
-          }}
+          onClick={() => this.openModal()}
         >
           Add Todo
         </Button>
-        <Table dataSource={todos} columns={columns} />
+        <List
+          data={todos}
+          remove={remove}
+          openModal={this.openModal}
+          customColumns={[
+            {
+              title: "ID",
+              dataIndex: "id",
+              key: "id"
+            },
+            {
+              title: "Title",
+              dataIndex: "title",
+              key: "title"
+            },
+            {
+              title: "Done",
+              dataIndex: "done",
+              key: "done",
+              render: (text, record) => record.done.toString()
+            }
+          ]}
+        />
+        <Edit
+          formData={this.state.formData}
+          editFormData={this.editFormData}
+          showModal={this.state.showModal === "edit"}
+          closeModal={this.closeModal}
+          closeModalAndSave={this.closeModalAndSave}
+        />
+        <Create
+          formData={this.state.formData}
+          editFormData={this.editFormData}
+          showModal={this.state.showModal === "create"}
+          closeModal={this.closeModal}
+          closeModalAndSave={this.closeModalAndSave}
+        />
       </div>
     );
   }

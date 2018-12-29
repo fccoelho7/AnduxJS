@@ -12,20 +12,32 @@ const UPDATE = getActionPath("UPDATE");
 const DELETE = getActionPath("DELETE");
 
 // Reducer
-export default (state = [], action = {}) =>
+export default (
+  state = [{ id: 0, title: "Example", done: true }],
+  action = {}
+) =>
   produce(state, draft => {
     switch (action.type) {
       case CREATE:
-        draft.push(action.payload);
+        const defaultData = {
+          id: Math.floor(Math.random() * 100),
+          title: "",
+          done: false
+        };
+
+        draft.push({ ...defaultData, ...action.payload });
+
         break;
       case UPDATE:
         draft[action.index] = {
-          ...draft[action.index],
+          ...state[action.index],
           ...action.payload
         };
+
         break;
       case DELETE:
         draft.splice(action.index, 1);
+
         break;
       default:
         return state;
