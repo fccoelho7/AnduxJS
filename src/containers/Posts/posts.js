@@ -1,16 +1,19 @@
+import postsService from "./posts-service";
+
 // Actions
-const FETCH_POSTS = "FETCH_POSTS";
-const CREATE_POST = "CREATE_POST";
-const UPDATE_POST = "UPDATE_POST";
-const REMOVE_POST = "REMOVE_POST";
+export const Types = {
+  FETCH_POSTS: "FETCH_POSTS",
+  CREATE_POST: "CREATE_POST",
+  UPDATE_POST: "UPDATE_POST",
+  REMOVE_POST: "REMOVE_POST"
+};
 
 // Reducers
-export default (
-  state = [{ id: 0, title: "Example", done: true }],
-  action = {}
-) => {
+export default (state = [], action = {}) => {
   switch (action.type) {
-    case CREATE_POST:
+    case Types.FETCH_POSTS:
+      return action.payload;
+    case Types.CREATE_POST:
       return [
         ...state,
         {
@@ -19,11 +22,11 @@ export default (
           done: action.payload.done || false
         }
       ];
-    case UPDATE_POST:
+    case Types.UPDATE_POST:
       return state.map(item =>
         item.id !== action.id ? item : { ...item, ...action.payload }
       );
-    case REMOVE_POST:
+    case Types.REMOVE_POST:
       return state.filter(item => item.id !== action.id);
     default:
       return state;
@@ -32,19 +35,23 @@ export default (
 
 // Action Creators
 export const actionCreators = {
-  fetch() {
-    return { type: FETCH_POSTS };
+  fetch: () => async dispatch => {
+    const { data } = await postsService.get();
+    dispatch({ type: Types.FETCH_POSTS, payload: data.payload });
   },
 
-  create(payload) {
-    return { type: CREATE_POST, payload };
+  create: payload => async dispatch => {
+    const { data } = await postsService.create(payload);
+    dispatch({ type: Types.CREATE_POST, payload: data.payload });
   },
 
-  update(id, payload) {
-    return { type: UPDATE_POST, id, payload };
+  update: (id, payload) => async dispatch => {
+    const { data } = await postsService.update(id, payload);
+    dispatch({ type: Types.UPDATE_POST, payload: data.payload });
   },
 
-  remove(id) {
-    return { type: REMOVE_POST, id };
+  remove: id => async dispatch => {
+    await postsService.remove(id);
+    dispatch({ type: Types.REMOVE_POST, id });
   }
 };

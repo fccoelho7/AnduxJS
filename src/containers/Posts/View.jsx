@@ -3,6 +3,7 @@ import { Button } from "antd";
 import List from "../../components/List";
 import Edit from "./Edit";
 import Create from "./Create";
+import { actionCreators } from "./posts";
 
 class View extends Component {
   state = {
@@ -10,6 +11,11 @@ class View extends Component {
     editing: null,
     showModal: false
   };
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(actionCreators.fetch());
+  }
 
   openModal = (type = "create", index = null) => {
     this.setState({
@@ -24,13 +30,13 @@ class View extends Component {
   };
 
   closeModalAndSave = () => {
-    const { create, update } = this.props;
+    const { dispatch } = this.props;
     const { editing, formData } = this.state;
 
     if (editing != null) {
-      update(editing, formData);
+      dispatch(actionCreators.update(editing, formData));
     } else {
-      create(formData);
+      dispatch(actionCreators.create(formData));
     }
 
     this.closeModal();
@@ -39,11 +45,11 @@ class View extends Component {
   editFormData = formData => this.setState({ formData });
 
   render() {
-    const { posts, remove } = this.props;
+    const { posts, dispatch } = this.props;
 
     return (
       <div>
-        <h2>Home</h2>
+        <h2>Posts</h2>
         <Button
           type="primary"
           className="create-todo"
@@ -53,7 +59,7 @@ class View extends Component {
         </Button>
         <List
           data={posts}
-          remove={remove}
+          remove={dispatch(actionCreators.remove)}
           openModal={this.openModal}
           customColumns={[
             {

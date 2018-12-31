@@ -1,0 +1,28 @@
+{
+  "posts": {
+    "status": "success",
+    "payload": [
+      {
+        "id": 1,
+        "title": "Post title example 1",
+        "done": false,
+        "created_at": "2012-10-15T21:26:17Z",
+        "updated_at": "2012-10-15T21:26:17Z"
+      },
+      {
+        "id": 2,
+        "title": "Post title example 2",
+        "done": true,
+        "created_at": "2012-10-15T21:26:17Z",
+        "updated_at": "2012-10-15T21:26:17Z"
+      },
+      {
+        "id": 3,
+        "title": "Post title example 3",
+        "done": false,
+        "created_at": "2012-10-15T21:26:17Z",
+        "updated_at": "2012-10-15T21:26:17Z"
+      }
+    ]
+  }
+}

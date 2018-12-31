@@ -34,9 +34,7 @@ class App extends Component {
               <Posts />
             </div>
           </Content>
-          <Footer style={{ textAlign: "center" }}>
-            Ant Design ©2018 Created by Ant UED
-          </Footer>
+          <Footer style={{ textAlign: "center" }}>Andux ©2018</Footer>
         </Layout>
       </div>
     );

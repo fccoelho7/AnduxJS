@@ -1,9 +1,10 @@
 import { createStore } from "redux";
-import { combineReducers } from "redux";
+import { combineReducers, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 import posts from "../containers/Posts/posts";
 
-export default createStore(
-  combineReducers({
-    posts
-  })
-);
+const reducers = combineReducers({
+  posts
+});
+
+export default createStore(reducers, applyMiddleware(thunk));
