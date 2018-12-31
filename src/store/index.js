@@ -1,9 +1,9 @@
 import { createStore } from "redux";
 import { combineReducers } from "redux";
-import todos from "../containers/Home/todos";
+import posts from "../containers/Posts/posts";
 
 export default createStore(
   combineReducers({
-    todos
+    posts
   })
 );

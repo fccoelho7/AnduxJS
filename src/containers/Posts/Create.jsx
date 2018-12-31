@@ -1,8 +1,8 @@
 import React from "react";
-import FormModal from "./FormModal";
+import FormModal from "../../components/FormModal";
 import ModalForm from "./Form";
 
-const Edit = ({
+const Create = ({
   editFormData,
   formData,
   showModal,
@@ -10,7 +10,7 @@ const Edit = ({
   closeModalAndSave
 }) => (
   <FormModal
-    title="Edit"
+    title="New"
     visible={showModal}
     handleCancel={closeModal}
     handleOk={closeModalAndSave}
@@ -19,4 +19,4 @@ const Edit = ({
   </FormModal>
 );
 
-export default Edit;
+export default Create;

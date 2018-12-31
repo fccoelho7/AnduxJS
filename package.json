@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "antd": "^3.11.6",
-    "immer": "^1.9.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
@@ -31,8 +30,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "enzyme-adapter-react-16": "^1.7.1",
     "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
     "react-test-renderer": "^16.7.0"
   }
 }

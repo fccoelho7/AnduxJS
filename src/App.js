@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Home from "./containers/Home";
+import Posts from "./containers/Posts";
 import { Layout, Menu } from "antd";
 import "antd/dist/antd.css";
 import logo from "./logo.svg";
@@ -31,7 +31,7 @@ class App extends Component {
           </Header>
           <Content style={{ padding: "0 50px", marginTop: 100 }}>
             <div style={{ background: "#fff", padding: 24, minHeight: 380 }}>
-              <Home />
+              <Posts />
             </div>
           </Content>
           <Footer style={{ textAlign: "center" }}>

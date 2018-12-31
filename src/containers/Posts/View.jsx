@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Button } from "antd";
-import List from "./components/List";
-import Edit from "./components/Edit";
-import Create from "./components/Create";
+import List from "../../components/List";
+import Edit from "./Edit";
+import Create from "./Create";
 
 class View extends Component {
   state = {
@@ -13,7 +13,7 @@ class View extends Component {
 
   openModal = (type = "create", index = null) => {
     this.setState({
-      formData: this.props.todos[index],
+      formData: this.props.posts[index],
       editing: index,
       showModal: type
     });
@@ -39,7 +39,7 @@ class View extends Component {
   editFormData = formData => this.setState({ formData });
 
   render() {
-    const { todos, remove } = this.props;
+    const { posts, remove } = this.props;
 
     return (
       <div>
@@ -52,7 +52,7 @@ class View extends Component {
           Add Todo
         </Button>
         <List
-          data={todos}
+          data={posts}
           remove={remove}
           openModal={this.openModal}
           customColumns={[

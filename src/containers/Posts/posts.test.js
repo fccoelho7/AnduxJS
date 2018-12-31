@@ -1,8 +1,8 @@
-import reducer, { actionCreators } from "./todos";
-const { get, create, update, remove } = actionCreators;
+import reducer, { actionCreators } from "./posts";
+const { fetch, create, update, remove } = actionCreators;
 
 describe("Reducer", () => {
-  describe("Get", () => {
+  describe("Fetch", () => {
     it("returns all", () => {
       const defaultState = [
         { id: 1, title: "Example 1", done: false },
@@ -10,24 +10,22 @@ describe("Reducer", () => {
         { id: 3, title: "Example 3", done: true }
       ];
 
-      expect(reducer(defaultState, get())).toEqual(defaultState);
+      expect(reducer(defaultState, fetch())).toEqual(defaultState);
     });
   });
 
   describe("Create", () => {
     it("returns state with the new one", () => {
       const defaultState = [
-        { id: 1, title: "Example 1", done: false },
-        { id: 2, title: "Example 2", done: false },
-        { id: 3, title: "Example 3", done: true }
+        { title: "Example 1", done: false },
+        { title: "Example 2", done: false },
+        { title: "Example 3", done: true }
       ];
+      const newOne = { title: "Example 4", done: true };
+      const result = reducer(defaultState, create(newOne));
 
-      const newOne = { id: 4, title: "Example 4", done: true };
-
-      expect(reducer(defaultState, create(newOne))).toEqual([
-        ...defaultState,
-        newOne
-      ]);
+      expect(result.length).toEqual(4);
+      expect(result[3]).toEqual(expect.objectContaining(newOne));
     });
   });
 
@@ -46,7 +44,7 @@ describe("Reducer", () => {
       ];
 
       expect(
-        reducer(defaultState, update(0, { title: "Example 1 Updated" }))
+        reducer(defaultState, update(1, { title: "Example 1 Updated" }))
       ).toEqual(newState);
     });
   });
@@ -60,7 +58,7 @@ describe("Reducer", () => {
       ];
 
       const newState = [
-        { id: 1, title: "Example 1", done: false },
+        { id: 2, title: "Example 2", done: false },
         { id: 3, title: "Example 3", done: true }
       ];
 
