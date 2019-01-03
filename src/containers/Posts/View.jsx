@@ -1,48 +1,12 @@
 import React, { Component } from "react";
-import { Button } from "antd";
-import List from "../../components/List";
-import Edit from "./Edit";
-import Create from "./Create";
-import { actionCreators } from "./posts";
+import { actions } from "./posts";
+import Listable from "../../components/Listable";
+import ModalForm from "./Form";
 
 class View extends Component {
-  state = {
-    formData: null,
-    editing: null,
-    showModal: false
-  };
-
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(actionCreators.fetch());
+    this.props.dispatch(actions.fetch());
   }
-
-  openModal = (type = "create", index = null) => {
-    this.setState({
-      formData: this.props.posts[index],
-      editing: index,
-      showModal: type
-    });
-  };
-
-  closeModal = () => {
-    this.setState({ showModal: false, formData: null, editing: null });
-  };
-
-  closeModalAndSave = () => {
-    const { dispatch } = this.props;
-    const { editing, formData } = this.state;
-
-    if (editing != null) {
-      dispatch(actionCreators.update(editing, formData));
-    } else {
-      dispatch(actionCreators.create(formData));
-    }
-
-    this.closeModal();
-  };
-
-  editFormData = formData => this.setState({ formData });
 
   render() {
     const { posts, dispatch } = this.props;
@@ -50,17 +14,7 @@ class View extends Component {
     return (
       <div>
         <h2>Posts</h2>
-        <Button
-          type="primary"
-          className="create-todo"
-          onClick={() => this.openModal()}
-        >
-          Add Todo
-        </Button>
-        <List
-          data={posts}
-          remove={dispatch(actionCreators.remove)}
-          openModal={this.openModal}
+        <Listable
           customColumns={[
             {
               title: "ID",
@@ -76,23 +30,14 @@ class View extends Component {
               title: "Done",
               dataIndex: "done",
               key: "done",
-              render: (text, record) => record.done.toString()
+              render: (text, record) => record.done && record.done.toString()
             }
           ]}
-        />
-        <Edit
-          formData={this.state.formData}
-          editFormData={this.editFormData}
-          showModal={this.state.showModal === "edit"}
-          closeModal={this.closeModal}
-          closeModalAndSave={this.closeModalAndSave}
-        />
-        <Create
-          formData={this.state.formData}
-          editFormData={this.editFormData}
-          showModal={this.state.showModal === "create"}
-          closeModal={this.closeModal}
-          closeModalAndSave={this.closeModalAndSave}
+          data={posts}
+          Form={ModalForm}
+          handleCreate={data => dispatch(actions.create(data))}
+          handleEdit={data => dispatch(actions.update(data))}
+          handleRemove={id => dispatch(actions.remove(id))}
         />
       </div>
     );

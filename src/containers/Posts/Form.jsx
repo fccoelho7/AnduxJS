@@ -1,20 +1,20 @@
 import React from "react";
 import { Form, Input, Switch } from "antd";
 
-const ModalForm = ({ formData, editFormData }) => (
+const ModalForm = ({ data, handleOnChange }) => (
   <Form className="login-form">
     <Form.Item label="Title">
       <Input
         placeholder="Describe the task's description.."
-        value={formData && formData.title}
-        onChange={e => editFormData({ ...formData, title: e.target.value })}
+        value={data && data.title}
+        onChange={e => handleOnChange({ ...data, title: e.target.value })}
       />
     </Form.Item>
     <Form.Item label="Done?">
       <Switch
         defaultChecked
-        checked={formData && formData.done}
-        onChange={done => editFormData({ ...formData, done })}
+        checked={data && data.done}
+        onChange={done => handleOnChange({ ...data, done })}
       />
     </Form.Item>
   </Form>

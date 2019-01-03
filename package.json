@@ -22,7 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "api": "json-server --watch db.json --port 3001 --routes routes.json"
+    "api": "json-server --watch db.json --port 3001"
   },
   "eslintConfig": {
     "extends": "react-app"

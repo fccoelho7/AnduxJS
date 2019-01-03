@@ -1,12 +1,7 @@
 {
-  "data": {
-    "status": "success",
-    "payload": {
-      "id": 1,
-      "title": "Post title example 1",
-      "done": false,
-      "created_at": "2012-10-15T21:26:17Z",
-      "updated_at": "2012-10-15T21:26:17Z"
-    }
-  }
+  "id": 1,
+  "title": "Post title example 1",
+  "done": false,
+  "created_at": "2012-10-15T21:26:17Z",
+  "updated_at": "2012-10-15T21:26:17Z"
 }

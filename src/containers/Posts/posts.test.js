@@ -1,6 +1,6 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import reducer, { Types, actionCreators } from "./posts";
+import reducer, { Types, actions } from "./posts";
 import postsService from "./posts-service";
 import {
   getMockData,
@@ -27,15 +27,19 @@ describe("Reducers", () => {
         type: Types.FETCH_POSTS,
         payload
       })
-    ).toEqual(payload);
+    ).toEqual({
+      list: payload
+    });
   });
 
   it("returns state with the new one", () => {
-    const defaultState = [
-      { title: "Example 1", done: false },
-      { title: "Example 2", done: false },
-      { title: "Example 3", done: true }
-    ];
+    const defaultState = {
+      list: [
+        { title: "Example 1", done: false },
+        { title: "Example 2", done: false },
+        { title: "Example 3", done: true }
+      ]
+    };
 
     const payload = { title: "Example 4", done: true };
 
@@ -44,43 +48,50 @@ describe("Reducers", () => {
       payload
     });
 
-    expect(result.length).toEqual(4);
-    expect(result[3]).toEqual(expect.objectContaining(payload));
+    expect(result.list.length).toEqual(4);
+    expect(result.list[3]).toEqual(expect.objectContaining(payload));
   });
 
   it("returns state with the updated one", () => {
-    const defaultState = [
-      { id: 1, title: "Example 1", done: false },
-      { id: 2, title: "Example 2", done: false },
-      { id: 3, title: "Example 3", done: true }
-    ];
+    const defaultState = {
+      list: [
+        { id: 1, title: "Example 1", done: false },
+        { id: 2, title: "Example 2", done: false },
+        { id: 3, title: "Example 3", done: true }
+      ]
+    };
 
-    const newState = [
-      { id: 1, title: "Example 1 Updated", done: false },
-      { id: 2, title: "Example 2", done: false },
-      { id: 3, title: "Example 3", done: true }
-    ];
+    const newState = {
+      list: [
+        { id: 1, title: "Example 1 Updated", done: false },
+        { id: 2, title: "Example 2", done: false },
+        { id: 3, title: "Example 3", done: true }
+      ]
+    };
 
     expect(
       reducer(defaultState, {
         type: Types.UPDATE_POST,
-        id: 1,
-        payload: { title: "Example 1 Updated" }
+        payload: { id: 1, title: "Example 1 Updated" }
       })
     ).toEqual(newState);
   });
 
   it("returns state without the removed one", () => {
-    const defaultState = [
-      { id: 1, title: "Example 1", done: false },
-      { id: 2, title: "Example 2", done: false },
-      { id: 3, title: "Example 3", done: true }
-    ];
+    const defaultState = {
+      list: [
+        { id: 1, title: "Example 1", done: false },
+        { id: 2, title: "Example 2", done: false },
+        { id: 3, title: "Example 3", done: true }
+      ]
+    };
 
-    const newState = [
-      { id: 2, title: "Example 2", done: false },
-      { id: 3, title: "Example 3", done: true }
-    ];
+    const newState = {
+      list: [
+        { id: 2, title: "Example 2", done: false },
+        { id: 3, title: "Example 3", done: true }
+      ]
+    };
 
     expect(
       reducer(defaultState, {
@@ -99,37 +110,33 @@ describe("Action Creators", () => {
   });
 
   it("fetches all posts", async () => {
-    postsService.get.mockResolvedValue(getMockData);
+    postsService.get.mockResolvedValue({ data: getMockData });
 
-    const expectedActions = [
-      { type: Types.FETCH_POSTS, payload: getMockData.data.payload }
-    ];
+    const expectedActions = [{ type: Types.FETCH_POSTS, payload: getMockData }];
 
-    await store.dispatch(actionCreators.fetch());
+    await store.dispatch(actions.fetch());
 
     expect(store.getActions()).toEqual(expectedActions);
   });
 
   it("creates a post", async () => {
-    postsService.create.mockResolvedValue(postMockData);
+    postsService.create.mockResolvedValue({ data: postMockData });
 
     const expectedActions = [
-      { type: Types.CREATE_POST, payload: postMockData.data.payload }
+      { type: Types.CREATE_POST, payload: postMockData }
     ];
 
-    await store.dispatch(actionCreators.create());
+    await store.dispatch(actions.create(postMockData));
 
     expect(store.getActions()).toEqual(expectedActions);
   });
 
   it("updates a post", async () => {
-    postsService.update.mockResolvedValue(putMockData);
+    postsService.update.mockResolvedValue({ data: putMockData });
 
-    const expectedActions = [
-      { type: Types.UPDATE_POST, payload: putMockData.data.payload }
-    ];
+    const expectedActions = [{ type: Types.UPDATE_POST, payload: putMockData }];
 
-    await store.dispatch(actionCreators.update());
+    await store.dispatch(actions.update(putMockData));
 
     expect(store.getActions()).toEqual(expectedActions);
   });
@@ -137,9 +144,9 @@ describe("Action Creators", () => {
   it("removes a post", async () => {
     postsService.remove.mockResolvedValue(deleteMockData);
 
-    const expectedActions = [{ type: Types.REMOVE_POST }];
+    const expectedActions = [{ type: Types.REMOVE_POST, id: 123 }];
 
-    await store.dispatch(actionCreators.remove());
+    await store.dispatch(actions.remove(123));
 
     expect(store.getActions()).toEqual(expectedActions);
   });
