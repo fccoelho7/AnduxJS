@@ -1,4 +1,4 @@
-import fetch from "../../services/fetch";
+import fetch from "../../../services/http";
 
 const postsService = {
   get() {

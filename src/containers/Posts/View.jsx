@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import { actions } from "./posts";
 import Listable from "../../components/Listable";
 import ModalForm from "./Form";
 
 class View extends Component {
   componentDidMount() {
-    this.props.dispatch(actions.fetch());
+    this.props.fetch();
   }
 
   render() {
-    const { posts, dispatch } = this.props;
+    const { posts, create, update, remove } = this.props;
 
     return (
       <div>
@@ -17,27 +16,16 @@ class View extends Component {
         <Listable
           customColumns={[
             {
-              title: "ID",
-              dataIndex: "id",
-              key: "id"
-            },
-            {
               title: "Title",
               dataIndex: "title",
               key: "title"
-            },
-            {
-              title: "Done",
-              dataIndex: "done",
-              key: "done",
-              render: (text, record) => record.done && record.done.toString()
             }
           ]}
           data={posts}
           Form={ModalForm}
-          handleCreate={data => dispatch(actions.create(data))}
-          handleEdit={data => dispatch(actions.update(data))}
-          handleRemove={id => dispatch(actions.remove(id))}
+          handleCreate={data => create(data)}
+          handleEdit={data => update(data)}
+          handleRemove={id => remove(id)}
         />
       </div>
     );

@@ -16,7 +16,7 @@ class List extends React.PureComponent {
   openModal = (type, index) => {
     this.setState({
       currentAction: type,
-      formData: this.props.data[index] || null
+      formData: (this.props.data && this.props.data[index]) || null
     });
   };
 

@@ -5,4 +5,3 @@ A React + Redux modular, scalable, friendly framework.
 ## Main features
 
 - [Ant Design](https://ant.design/) 😍
-- [Ducks Pattern](https://github.com/erikras/ducks-modular-redux)
