@@ -1,49 +1,71 @@
 import React from "react";
-import { Table, Button, Divider, Popconfirm } from "antd";
+import { Table, Button, Divider, Popconfirm, message } from "antd";
 import FormModal from "./FormModal";
 
-class List extends React.PureComponent {
+class Listable extends React.PureComponent {
   static ACTIONS = {
     EDITING: "creating",
     CREATING: "editing"
   };
 
   state = {
-    currentAction: null,
-    formData: null
+    currentAction: null
   };
 
   openModal = (type, index) => {
-    this.setState({
-      currentAction: type,
-      formData: (this.props.data && this.props.data[index]) || null
-    });
+    const { data } = this.props;
+    const { form } = this.formRef.props;
+
+    this.setState({ currentAction: type });
+
+    form.setFieldsInitialValue(data[index]);
   };
 
   closeModal = () => {
-    this.setState({ currentAction: null, formData: null });
+    this.setState({ currentAction: null });
   };
 
-  closeModalAndSave = () => {
-    const { handleEdit, handleCreate } = this.props;
-    const { currentAction, formData } = this.state;
+  closeModalAndSave = formData => {
+    const { currentAction } = this.state;
 
-    if (currentAction === List.ACTIONS.EDITING) {
-      handleEdit(formData);
+    if (currentAction === Listable.ACTIONS.EDITING) {
+      this.onEdit(formData);
     } else {
-      handleCreate(formData);
+      this.onCreate(formData);
     }
 
     this.closeModal();
   };
 
-  editFormData = formData => this.setState({ formData });
+  onCreate = data => {
+    const { handleCreate } = this.props;
+
+    handleCreate(data);
+
+    setTimeout(() => message.success("Post succesfull created!"), 300);
+  };
+
+  onEdit = data => {
+    const { handleEdit } = this.props;
+
+    handleEdit(data);
+
+    setTimeout(() => message.success("Post succesfull edited!"), 300);
+  };
+
+  onRemove = id => {
+    const { handleRemove } = this.props;
+
+    handleRemove(id);
+
+    message.success("Post succesfull deleted!");
+  };
 
   getColumns = () => {
-    const { customColumns, handleRemove } = this.props;
+    const { columns } = this.props;
 
     return [
-      ...customColumns,
+      ...columns,
       {
         title: "Action",
         key: "action",
@@ -51,14 +73,14 @@ class List extends React.PureComponent {
           <span key={record.id}>
             <Button
               size="small"
-              onClick={() => this.openModal(List.ACTIONS.EDITING, index)}
+              onClick={() => this.openModal(Listable.ACTIONS.EDITING, index)}
             >
               Edit
             </Button>
             <Divider type="vertical" />
             <Popconfirm
               title="Are you sure?"
-              onConfirm={() => handleRemove(record.id)}
+              onConfirm={() => this.onRemove(record.id)}
               okText="Yes"
               cancelText="No"
             >
@@ -72,8 +94,11 @@ class List extends React.PureComponent {
     ];
   };
 
+  saveFormRef = formRef => {
+    this.formRef = formRef;
+  };
+
   render() {
-    const { formData } = this.state;
     const { data, Form } = this.props;
 
     return (
@@ -81,7 +106,7 @@ class List extends React.PureComponent {
         <Button
           type="primary"
           className="create-todo"
-          onClick={() => this.openModal(List.ACTIONS.CREATING)}
+          onClick={() => this.openModal(Listable.ACTIONS.CREATING)}
         >
           Add Todo
         </Button>
@@ -92,23 +117,24 @@ class List extends React.PureComponent {
         />
         <FormModal
           title="Create"
-          visible={this.state.currentAction === List.ACTIONS.CREATING}
+          visible={this.state.currentAction === Listable.ACTIONS.CREATING}
           handleCancel={this.closeModal}
           handleOk={this.closeModalAndSave}
         >
-          <Form data={formData} handleOnChange={this.editFormData} />
+          <Form />
         </FormModal>
         <FormModal
           title="Edit"
-          visible={this.state.currentAction === List.ACTIONS.EDITING}
+          visible={this.state.currentAction === Listable.ACTIONS.EDITING}
           handleCancel={this.closeModal}
           handleOk={this.closeModalAndSave}
+          wrappedComponentRef={this.saveFormRef}
         >
-          <Form data={formData} handleOnChange={this.editFormData} />
+          <Form />
         </FormModal>
       </React.Fragment>
     );
   }
 }
 
-export default List;
+export default Listable;

@@ -14,11 +14,16 @@ class View extends Component {
       <div>
         <h2>Posts</h2>
         <Listable
-          customColumns={[
+          columns={[
             {
               title: "Title",
               dataIndex: "title",
               key: "title"
+            },
+            {
+              title: "Done",
+              dataIndex: "done",
+              key: "done"
             }
           ]}
           data={posts}

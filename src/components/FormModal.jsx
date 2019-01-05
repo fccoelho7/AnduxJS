@@ -1,23 +1,45 @@
 import React from "react";
-import { Modal, Button } from "antd";
+import { Modal, Form, Button } from "antd";
 
-const FormModal = ({ title, visible, handleOk, handleCancel, children }) => (
-  <Modal
-    visible={visible}
-    title={title}
-    onOk={handleOk}
-    onCancel={handleCancel}
-    footer={[
-      <Button key="back" onClick={handleCancel}>
-        Cancel
-      </Button>,
-      <Button key="submit" type="primary" onClick={handleOk}>
-        Submit
-      </Button>
-    ]}
-  >
-    {children}
-  </Modal>
-);
+class FormModal extends React.PureComponent {
+  handleOnSubmit = () => {
+    const { handleOk, form } = this.props;
 
-export default FormModal;
+    form.validateFields((err, values) => {
+      if (err) {
+        return;
+      }
+
+      form.resetFields();
+
+      if (handleOk) {
+        handleOk(values);
+      }
+    });
+  };
+
+  render() {
+    const { title, visible, handleCancel, form, children } = this.props;
+
+    return (
+      <Modal
+        visible={visible}
+        title={title}
+        onOk={this.handleOnSubmit}
+        onCancel={handleCancel}
+        footer={[
+          <Button key="back" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button key="submit" type="primary" onClick={this.handleOnSubmit}>
+            Submit
+          </Button>
+        ]}
+      >
+        {React.cloneElement(children, { form })}
+      </Modal>
+    );
+  }
+}
+
+export default Form.create()(FormModal);

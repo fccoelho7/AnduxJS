@@ -1,23 +1,30 @@
 import React from "react";
 import { Form, Input, Switch } from "antd";
 
-const ModalForm = ({ data, handleOnChange }) => (
-  <Form className="login-form">
-    <Form.Item label="Title">
-      <Input
-        placeholder="Describe the task's description.."
-        value={data && data.title}
-        onChange={e => handleOnChange({ ...data, title: e.target.value })}
-      />
-    </Form.Item>
-    <Form.Item label="Done?">
-      <Switch
-        defaultChecked
-        checked={data && data.done}
-        onChange={done => handleOnChange({ ...data, done })}
-      />
-    </Form.Item>
-  </Form>
-);
+const ModalForm = ({ data, form }) => {
+  const { getFieldDecorator } = form;
+
+  return (
+    <Form>
+      <Form.Item label="ID">
+        {getFieldDecorator("id")(
+          <Input placeholder="Describe the task's description.." />
+        )}
+      </Form.Item>
+      <Form.Item label="Title">
+        {getFieldDecorator("title", {
+          rules: [
+            { required: true, message: "Please input the title of the post!" }
+          ]
+        })(<Input placeholder="Describe the task's description.." />)}
+      </Form.Item>
+      <Form.Item label="Done?">
+        {getFieldDecorator("done", {
+          valuePropName: "checked"
+        })(<Switch />)}
+      </Form.Item>
+    </Form>
+  );
+};
 
 export default ModalForm;
