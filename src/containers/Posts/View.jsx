@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Layout from "../../layouts/default";
 import Listable from "../../components/Listable";
 import ModalForm from "./Form";
 
@@ -11,7 +12,7 @@ class View extends Component {
     const { posts, create, update, remove } = this.props;
 
     return (
-      <div>
+      <Layout>
         <h2>Posts</h2>
         <Listable
           columns={[
@@ -32,7 +33,7 @@ class View extends Component {
           handleEdit={data => update(data)}
           handleRemove={id => remove(id)}
         />
-      </div>
+      </Layout>
     );
   }
 }
