@@ -1,7 +1,7 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import { Modal, Form, Button } from "antd";
 
-class FormModal extends React.PureComponent {
+class FormModal extends PureComponent {
   handleOnSubmit = () => {
     const { handleOk, form } = this.props;
 

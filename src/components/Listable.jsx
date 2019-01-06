@@ -1,35 +1,36 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import { Table, Button, Divider, Popconfirm, message } from "antd";
-import FormModal from "./FormModal";
+import ModalForm from "./ModalForm";
 
-class Listable extends React.PureComponent {
+class Listable extends PureComponent {
   static ACTIONS = {
-    EDITING: "creating",
-    CREATING: "editing"
+    CREATING: "creating",
+    EDITING: "editing"
   };
 
   state = {
-    currentAction: null
+    currentAction: null,
+    formFields: {}
   };
 
   openModal = (type, index) => {
     const { data } = this.props;
-    const { form } = this.formRef.props;
 
-    this.setState({ currentAction: type });
-
-    form.setFieldsInitialValue(data[index]);
+    this.setState({
+      currentAction: type,
+      formFields: index != null ? data[index] : {}
+    });
   };
 
   closeModal = () => {
-    this.setState({ currentAction: null });
+    this.setState({ currentAction: null, formFields: {} });
   };
 
   closeModalAndSave = formData => {
-    const { currentAction } = this.state;
+    const { currentAction, formFields } = this.state;
 
     if (currentAction === Listable.ACTIONS.EDITING) {
-      this.onEdit(formData);
+      this.onEdit({ id: formFields.id, ...formData });
     } else {
       this.onCreate(formData);
     }
@@ -94,11 +95,15 @@ class Listable extends React.PureComponent {
     ];
   };
 
-  saveFormRef = formRef => {
-    this.formRef = formRef;
+  getModalTitle = () => {
+    const { CREATING } = Listable.ACTIONS;
+    const { currentAction } = this.state;
+
+    return currentAction === CREATING ? "Create" : "Edit";
   };
 
   render() {
+    const { currentAction, formFields } = this.state;
     const { data, Form } = this.props;
 
     return (
@@ -115,23 +120,14 @@ class Listable extends React.PureComponent {
           dataSource={data}
           columns={this.getColumns()}
         />
-        <FormModal
-          title="Create"
-          visible={this.state.currentAction === Listable.ACTIONS.CREATING}
+        <ModalForm
+          title={this.getModalTitle()}
+          visible={!!currentAction}
           handleCancel={this.closeModal}
           handleOk={this.closeModalAndSave}
         >
-          <Form />
-        </FormModal>
-        <FormModal
-          title="Edit"
-          visible={this.state.currentAction === Listable.ACTIONS.EDITING}
-          handleCancel={this.closeModal}
-          handleOk={this.closeModalAndSave}
-          wrappedComponentRef={this.saveFormRef}
-        >
-          <Form />
-        </FormModal>
+          <Form fields={formFields} />
+        </ModalForm>
       </React.Fragment>
     );
   }

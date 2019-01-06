@@ -1,5 +1,6 @@
 import update from "immutability-helper";
 import Types from "./types";
+import actions from "./actions";
 
 const INITIAL_STATE = {
   list: []
@@ -39,3 +40,5 @@ export default (state = INITIAL_STATE, action = {}) => {
       return state;
   }
 };
+
+export { Types, actions };

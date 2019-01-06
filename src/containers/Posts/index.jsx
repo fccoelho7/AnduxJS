@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import actions from "./reducer/actions";
+import { actions } from "./reducer";
 import View from "./View";
 
 const Container = props => <View {...props} />;
