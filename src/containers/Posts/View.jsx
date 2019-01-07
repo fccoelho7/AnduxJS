@@ -22,9 +22,14 @@ class View extends Component {
               key: "title"
             },
             {
-              title: "Done",
-              dataIndex: "done",
-              key: "done"
+              title: "Content",
+              dataIndex: "content",
+              key: "content"
+            },
+            {
+              title: "Category",
+              dataIndex: "category",
+              key: "category"
             }
           ]}
           data={posts}

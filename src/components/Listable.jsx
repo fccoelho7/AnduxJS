@@ -26,13 +26,13 @@ class Listable extends PureComponent {
     this.setState({ currentAction: null, formFields: {} });
   };
 
-  closeModalAndSave = formData => {
+  closeModalAndSave = newFormFields => {
     const { currentAction, formFields } = this.state;
 
     if (currentAction === Listable.ACTIONS.EDITING) {
-      this.onEdit({ id: formFields.id, ...formData });
+      this.onEdit({ ...formFields, ...newFormFields });
     } else {
-      this.onCreate(formData);
+      this.onCreate(newFormFields);
     }
 
     this.closeModal();
@@ -82,8 +82,8 @@ class Listable extends PureComponent {
             <Popconfirm
               title="Are you sure?"
               onConfirm={() => this.onRemove(record.id)}
-              okText="Yes"
               cancelText="No"
+              okText="Yes"
             >
               <Button type="danger" size="small">
                 Delete
@@ -108,17 +108,18 @@ class Listable extends PureComponent {
 
     return (
       <React.Fragment>
-        <Button
-          type="primary"
-          className="create-todo"
-          onClick={() => this.openModal(Listable.ACTIONS.CREATING)}
-        >
-          Add Todo
-        </Button>
         <Table
           rowKey={record => record.id}
           dataSource={data}
           columns={this.getColumns()}
+          title={() => (
+            <Button
+              type="primary"
+              onClick={() => this.openModal(Listable.ACTIONS.CREATING)}
+            >
+              Create
+            </Button>
+          )}
         />
         <ModalForm
           title={this.getModalTitle()}
