@@ -3,18 +3,16 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { LocaleProvider } from "antd";
 import enUS from "antd/lib/locale-provider/en_US";
-import Dashboard from "./Dashboard";
-import Posts from "./Posts";
-import NotFound from "./NotFound";
+import routes from "./routes";
+
+const Routes = () => routes.map(route => <Route exact {...route} />);
 
 const Root = ({ store }) => (
   <Provider store={store}>
     <LocaleProvider locale={enUS}>
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact component={Dashboard} />
-          <Route path="/posts" component={Posts} />
-          <Route path="*" component={NotFound} />
+          <Routes />
         </Switch>
       </BrowserRouter>
     </LocaleProvider>

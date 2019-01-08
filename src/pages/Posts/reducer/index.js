@@ -1,6 +1,6 @@
 import update from "immutability-helper";
-import Types from "./types";
-import actions from "./actions";
+import * as Types from "./types";
+import * as actions from "./actions";
 
 const INITIAL_STATE = {
   list: []
