@@ -1,10 +1,27 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
 import { Layout, Menu } from "antd";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import authService from "../../services/auth";
 import "antd/dist/antd.css";
 import logo from "./logo.svg";
 
 import "./global.css";
+
+const AuthLink = withRouter(({ history }) =>
+  authService.isAuthenticated ? (
+    <a
+      href="#"
+      onClick={() => {
+        authService.signout(() => history.push("/"));
+      }}
+    >
+      Sign out
+    </a>
+  ) : (
+    <Link to="/login">Login</Link>
+  )
+);
 
 class Default extends Component {
   render() {
@@ -30,6 +47,9 @@ class Default extends Component {
               </Menu.Item>
               <Menu.Item key="2">
                 <Link to="/posts">Posts</Link>
+              </Menu.Item>
+              <Menu.Item>
+                <AuthLink />
               </Menu.Item>
             </Menu>
           </Header>
