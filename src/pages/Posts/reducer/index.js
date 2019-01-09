@@ -8,15 +8,15 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action = {}) => {
   switch (action.type) {
-    case Types.FETCH_POSTS:
+    case Types.FETCH:
       return {
         list: action.payload
       };
 
-    case Types.CREATE_POST:
+    case Types.CREATE:
       return update(state, { list: { $push: [action.payload] } });
 
-    case Types.UPDATE_POST:
+    case Types.UPDATE:
       return update(state, {
         list: {
           $apply: list =>
@@ -31,7 +31,7 @@ export default (state = INITIAL_STATE, action = {}) => {
         }
       });
 
-    case Types.REMOVE_POST:
+    case Types.REMOVE:
       return update(state, {
         list: { $apply: list => list.filter(item => item.id !== action.id) }
       });

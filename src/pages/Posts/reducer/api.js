@@ -1,18 +1,20 @@
 import fetch from "../../../services/http";
 
-const postsService = {
+const API_ENDPOINT = "/posts";
+
+const api = {
   get() {
-    return fetch.get("/posts");
+    return fetch.get(API_ENDPOINT);
   },
   create(data) {
-    return fetch.post("/posts", data);
+    return fetch.post(API_ENDPOINT, data);
   },
   update(id, data) {
-    return fetch.put(`/posts/${id}`, data);
+    return fetch.put(`/${API_ENDPOINT}/${id}`, data);
   },
   remove(id) {
-    return fetch.delete(`/posts/${id}`);
+    return fetch.delete(`/${API_ENDPOINT}/${id}`);
   }
 };
 
-export default postsService;
+export default api;

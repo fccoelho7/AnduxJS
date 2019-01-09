@@ -21,7 +21,7 @@ describe("Reducers", () => {
       reducer(
         {},
         {
-          type: Types.FETCH_POSTS,
+          type: Types.FETCH,
           payload
         }
       )
@@ -32,7 +32,7 @@ describe("Reducers", () => {
     const payload = { title: "Example 4", done: true };
 
     const result = reducer(defaultState, {
-      type: Types.CREATE_POST,
+      type: Types.CREATE,
       payload
     });
 
@@ -51,7 +51,7 @@ describe("Reducers", () => {
 
     expect(
       reducer(defaultState, {
-        type: Types.UPDATE_POST,
+        type: Types.UPDATE,
         payload: { id: 1, title: "Example 1 Updated" }
       })
     ).toEqual(newState);
@@ -67,7 +67,7 @@ describe("Reducers", () => {
 
     expect(
       reducer(defaultState, {
-        type: Types.REMOVE_POST,
+        type: Types.REMOVE,
         id: 1
       })
     ).toEqual(newState);

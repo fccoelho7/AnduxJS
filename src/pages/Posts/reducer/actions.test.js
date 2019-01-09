@@ -20,7 +20,7 @@ describe("Actions", () => {
   it("fetches all posts", async () => {
     api.get.mockResolvedValue({ data: apiMock.get });
 
-    const expectedActions = [{ type: Types.FETCH_POSTS, payload: apiMock.get }];
+    const expectedActions = [{ type: Types.FETCH, payload: apiMock.get }];
 
     await store.dispatch(actions.fetch());
 
@@ -30,9 +30,7 @@ describe("Actions", () => {
   it("creates a post", async () => {
     api.create.mockResolvedValue({ data: apiMock.post });
 
-    const expectedActions = [
-      { type: Types.CREATE_POST, payload: apiMock.post }
-    ];
+    const expectedActions = [{ type: Types.CREATE, payload: apiMock.post }];
 
     await store.dispatch(actions.create(apiMock.post));
 
@@ -42,7 +40,7 @@ describe("Actions", () => {
   it("updates a post", async () => {
     api.update.mockResolvedValue({ data: apiMock.put });
 
-    const expectedActions = [{ type: Types.UPDATE_POST, payload: apiMock.put }];
+    const expectedActions = [{ type: Types.UPDATE, payload: apiMock.put }];
 
     await store.dispatch(actions.update(apiMock.put));
 
@@ -52,7 +50,7 @@ describe("Actions", () => {
   it("removes a post", async () => {
     api.remove.mockResolvedValue(apiMock.delete);
 
-    const expectedActions = [{ type: Types.REMOVE_POST, id: 123 }];
+    const expectedActions = [{ type: Types.REMOVE, id: 123 }];
 
     await store.dispatch(actions.remove(123));
 
