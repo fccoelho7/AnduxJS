@@ -1,20 +1,20 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { LocaleProvider } from "antd";
 import enUS from "antd/lib/locale-provider/en_US";
 import routes from "./routes";
 
-const Routes = () => routes.map(route => <Route exact {...route} />);
-
 const Root = ({ store }) => (
   <Provider store={store}>
     <LocaleProvider locale={enUS}>
-      <BrowserRouter>
+      <Router>
         <Switch>
-          <Routes />
+          {routes.map((route, i) => (
+            <Route key={i} {...route} />
+          ))}
         </Switch>
-      </BrowserRouter>
+      </Router>
     </LocaleProvider>
   </Provider>
 );
