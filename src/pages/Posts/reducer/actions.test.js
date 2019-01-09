@@ -1,16 +1,11 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import Types from "./types";
-import actions from "./actions";
-import httpService from "./http-service";
-import {
-  getMockData,
-  postMockData,
-  putMockData,
-  deleteMockData
-} from "./__mocks__";
+import * as Types from "./types";
+import * as actions from "./actions";
+import api from "./api";
+import apiMock from "./__mocks__/api";
 
-jest.mock("./http-service");
+jest.mock("./api");
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -23,9 +18,9 @@ describe("Actions", () => {
   });
 
   it("fetches all posts", async () => {
-    httpService.get.mockResolvedValue({ data: getMockData });
+    api.get.mockResolvedValue({ data: apiMock.get });
 
-    const expectedActions = [{ type: Types.FETCH_POSTS, payload: getMockData }];
+    const expectedActions = [{ type: Types.FETCH_POSTS, payload: apiMock.get }];
 
     await store.dispatch(actions.fetch());
 
@@ -33,29 +28,29 @@ describe("Actions", () => {
   });
 
   it("creates a post", async () => {
-    httpService.create.mockResolvedValue({ data: postMockData });
+    api.create.mockResolvedValue({ data: apiMock.post });
 
     const expectedActions = [
-      { type: Types.CREATE_POST, payload: postMockData }
+      { type: Types.CREATE_POST, payload: apiMock.post }
     ];
 
-    await store.dispatch(actions.create(postMockData));
+    await store.dispatch(actions.create(apiMock.post));
 
     expect(store.getActions()).toEqual(expectedActions);
   });
 
   it("updates a post", async () => {
-    httpService.update.mockResolvedValue({ data: putMockData });
+    api.update.mockResolvedValue({ data: apiMock.put });
 
-    const expectedActions = [{ type: Types.UPDATE_POST, payload: putMockData }];
+    const expectedActions = [{ type: Types.UPDATE_POST, payload: apiMock.put }];
 
-    await store.dispatch(actions.update(putMockData));
+    await store.dispatch(actions.update(apiMock.put));
 
     expect(store.getActions()).toEqual(expectedActions);
   });
 
   it("removes a post", async () => {
-    httpService.remove.mockResolvedValue(deleteMockData);
+    api.remove.mockResolvedValue(apiMock.delete);
 
     const expectedActions = [{ type: Types.REMOVE_POST, id: 123 }];
 
