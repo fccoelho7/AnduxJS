@@ -37,6 +37,7 @@ class Login extends PureComponent {
         <Form className="login-form">
           <Form.Item>
             {getFieldDecorator("userName", {
+              initialValue: "user@example.com",
               rules: [
                 { required: true, message: "Please input your username!" }
               ]
@@ -51,6 +52,7 @@ class Login extends PureComponent {
           </Form.Item>
           <Form.Item>
             {getFieldDecorator("password", {
+              initialValue: "1234",
               rules: [
                 { required: true, message: "Please input your password!" }
               ]
