@@ -3,7 +3,6 @@ import React, { PureComponent } from "react";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { Redirect } from "react-router-dom";
 import authService from "../../services/auth";
-import Layout from "../../layouts/default";
 
 import "./login.css";
 
@@ -32,8 +31,8 @@ class Login extends PureComponent {
     if (redirectToReferrer) return <Redirect to={from} />;
 
     return (
-      <Layout>
-        <h2>Login</h2>
+      <div className="login-form-container">
+        <h1>Login</h1>
         <Form className="login-form">
           <Form.Item>
             {getFieldDecorator("userName", {
@@ -85,7 +84,7 @@ class Login extends PureComponent {
             Or <a href="#">register now!</a>
           </Form.Item>
         </Form>
-      </Layout>
+      </div>
     );
   }
 }

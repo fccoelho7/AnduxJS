@@ -1,8 +1,16 @@
 .login-form-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
 }
 
 .login-form {
+  background-color: #eee;
+  padding: 20px 20px 0;
+  border-radius: 3px;
   max-width: 300px;
 }
 
