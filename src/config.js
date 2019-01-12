@@ -1,9 +1,26 @@
-const prod = {
-  apiBaseUrl: "https://your-domain.com/api"
+const config = {
+  name: "my-app",
+  api: {
+    baseUrl: "http://localhost:3001",
+    auth: {
+      namespace: "/auth",
+      login: "/login",
+      signup: "/signup",
+      logout: "/logout"
+    }
+  }
 };
 
 const dev = {
-  apiBaseUrl: "http://localhost:3001"
+  ...config
+};
+
+const prod = {
+  ...config,
+  api: {
+    ...config.api,
+    baseUrl: "https://your-domain.com/api"
+  }
 };
 
 export default (process.env.REACT_APP_STAGE === "production" ? prod : dev);
