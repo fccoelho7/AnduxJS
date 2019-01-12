@@ -11,7 +11,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
       ) : (
         <Redirect
           to={{
-            pathname: "/login",
+            pathname: "/auth/login",
             state: { from: props.location }
           }}
         />
@@ -23,9 +23,9 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
 const Routes = ({ routes }) =>
   routes.map((route, i) =>
     route.protected ? (
-      <ProtectedRoute key={i} {...route} />
+      <ProtectedRoute key={i} exact {...route} />
     ) : (
-      <Route key={i} {...route} />
+      <Route key={i} exact {...route} />
     )
   );
 

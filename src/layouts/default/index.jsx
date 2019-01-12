@@ -19,7 +19,7 @@ const AuthLink = withRouter(({ history }) =>
       Sign out
     </a>
   ) : (
-    <Link to="/login">Login</Link>
+    <Link to="/auth/login">Login</Link>
   )
 );
 

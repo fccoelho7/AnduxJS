@@ -1,19 +1,19 @@
-import fetch from "../../../services/http";
+import http from "../../../services/http";
 
-const API_ENDPOINT = "/posts";
+const namespace = "/posts";
 
 const api = {
   get() {
-    return fetch.get(API_ENDPOINT);
+    return http.get(namespace);
   },
   create(data) {
-    return fetch.post(API_ENDPOINT, data);
+    return http.post(namespace, data);
   },
   update(id, data) {
-    return fetch.put(`/${API_ENDPOINT}/${id}`, data);
+    return http.put(`${namespace}/${id}`, data);
   },
   remove(id) {
-    return fetch.delete(`/${API_ENDPOINT}/${id}`);
+    return http.delete(`${namespace}/${id}`);
   }
 };
 

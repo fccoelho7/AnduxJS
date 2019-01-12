@@ -2,13 +2,12 @@ import { createStore } from "redux";
 import { combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import posts from "../pages/Posts/reducer";
+import getAllReducers from "./utils/getAllReducers";
+import * as pagesIndex from "./pages/index";
 
-const reducers = combineReducers({
-  posts
-});
+const reducers = getAllReducers(pagesIndex);
 
 export default createStore(
-  reducers,
+  combineReducers(reducers),
   composeWithDevTools(applyMiddleware(thunk))
 );

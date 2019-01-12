@@ -1,9 +1,10 @@
-import * as Pages from "./";
+import * as pages from "./";
+
+const getPage = name => pages[name].component;
+
+/* For protected routes, use: protected: true */
 
 export default [
-  { path: "/", exact: true, component: Pages.Dashboard },
-  /* For protected routes, use: protected: true */
-  { path: "/posts", component: Pages.Posts, protected: true },
-  { path: "/login", component: Pages.Login },
-  { path: "*", component: Pages.NotFound }
+  { path: "/auth/login", component: getPage("login") },
+  { path: "/posts", component: getPage("posts"), protected: true }
 ];
