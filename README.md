@@ -19,6 +19,7 @@ yarn && yarn start
 - [Axios](https://github.com/axios/axios)
 - [Create React App](https://github.com/facebook/create-react-app)
 - [Immutability Helper](https://github.com/kolodny/immutability-helper)
+- [JSON Server](https://github.com/typicode/json-server)
 - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
 - [Redux Thunk](https://github.com/reduxjs/redux-thunk)
 
