@@ -2,9 +2,9 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import authService from "../services/auth";
 
-const ProtectedRoute = ({ component: Component, ...rest }) => (
+const ProtectedRoute = ({ component: Component, ...route }) => (
   <Route
-    {...rest}
+    {...route}
     render={props =>
       authService.isAuthenticated ? (
         <Component {...props} />
@@ -20,13 +20,4 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
   />
 );
 
-const Routes = ({ routes }) =>
-  routes.map((route, i) =>
-    route.protected ? (
-      <ProtectedRoute key={i} exact {...route} />
-    ) : (
-      <Route key={i} exact {...route} />
-    )
-  );
-
-export default Routes;
+export default ProtectedRoute;
