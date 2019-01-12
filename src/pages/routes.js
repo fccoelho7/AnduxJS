@@ -1,10 +1,10 @@
-import * as pages from "./";
+import pages from "./";
 
 const getPage = name => pages[name].component;
 
 /* For protected routes, use: protected: true */
 
 export default [
-  { path: "/auth/login", component: getPage("login") },
-  { path: "/posts", component: getPage("posts"), protected: true }
+  { path: "/posts", component: getPage("posts"), protected: true },
+  { path: "/auth/login", component: getPage("login") }
 ];

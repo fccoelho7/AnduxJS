@@ -1,6 +1,7 @@
-import Login from "./Auth/Login";
-import Posts from "./Posts";
-import PostsReducer from "./Posts/reducer";
-
-export const login = { component: Login };
-export const posts = { component: Posts, reducer: PostsReducer };
+export default {
+  posts: {
+    component: require("./Posts").default,
+    reducer: require("./Posts/reducer").default
+  },
+  login: { component: require("./Auth/Login") }
+};
