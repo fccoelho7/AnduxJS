@@ -1,6 +1,9 @@
 ---
 inject: true
 to: src/pages/index.js
-prepend: true
+after: export
 ---
-export const <%= Name %> = require("./<%= Name %>").default;
+  <%= name %>: {
+    component: require("./<%= Name %>").default,
+    reducer: require("./<%= Name %>/reducer").default
+  },

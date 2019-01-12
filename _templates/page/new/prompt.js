@@ -2,16 +2,19 @@ module.exports = [
   {
     type: "input",
     name: "name",
-    message: "Name: (Ex.: 'users')"
+    message: "Name:",
+    initial: "users"
   },
   {
     type: "input",
     name: "endpoint",
-    message: "API Endpoint: (Ex.: '/users')"
+    message: "Endpoint:",
+    initial: "/users"
   },
   {
     type: "list",
     name: "fields",
-    message: "Type comma-separated fields: (Ex.: 'name, surname, age')"
+    message: "Comma-separated fields:",
+    initial: "name, age"
   }
 ];

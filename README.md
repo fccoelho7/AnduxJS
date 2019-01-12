@@ -28,7 +28,7 @@ yarn && yarn start
 - [Enzyme](https://airbnb.io/enzyme/)
 - [Jest](http://jest.io)
 
-## Scaffolding [⚠️ In Progress]
+## Scaffolding
 
 To generate new pages dynamically, just execute:
 

@@ -1,6 +1,6 @@
 ---
 inject: true
 to: src/pages/routes.js
-after: export
+after: default
 ---
-  { path: "/<%= name %>", component: Pages.<%= Name %> },
+  { path: "/<%= name %>", component: getPage("<%= name %>") },
