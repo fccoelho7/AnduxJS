@@ -43,7 +43,7 @@ yarn andux:new:page
 │   ├── components
 │   │   ├── Listable.jsx
 │   │   ├── ModalForm.jsx
-│   │   └── Routes.jsx
+│   │   └── ProtectedRoute.jsx
 │   ├── config.js
 │   ├── index.js
 │   ├── layouts
@@ -53,7 +53,7 @@ yarn andux:new:page
 │   ├── pages
 │   │   ├── Auth
 │   │   ├── Dashboard
-│   │   ├── NotFound.jsx
+│   │   ├── Page404.jsx
 │   │   ├── Posts
 │   │   ├── Root.jsx
 │   │   ├── index.js
@@ -61,6 +61,7 @@ yarn andux:new:page
 │   ├── services
 │   │   ├── auth.js
 │   │   └── http.js
-│   └── store
-│       └── index.js
+│   ├── setupTests.js
+│   ├── store.js
+│   └── utils
 ```
