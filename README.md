@@ -1,6 +1,6 @@
 # AnduxJS [![Build Status](https://travis-ci.org/fccoelho7/andux.svg?branch=master)](https://travis-ci.org/fccoelho7/andux)
 
-A React + Redux modular, scalable, easily and friendly framework.
+A React + Redux modular, scalable, easy and friendly framework.
 
 - [Main Features](#main-features)
 - [Scaffolding](#scaffolding)
