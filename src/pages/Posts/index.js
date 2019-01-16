@@ -1,12 +1,9 @@
-import React from "react";
 import { connect } from "react-redux";
 import { actions } from "./reducer";
 import View from "./View";
 
-const Container = props => <View {...props} />;
-
-const mapStateToProps = store => ({
-  posts: store.posts.list
+const mapStateToProps = state => ({
+  posts: state.posts.list
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -19,4 +16,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Container);
+)(View);

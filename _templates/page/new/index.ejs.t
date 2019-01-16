@@ -1,15 +1,12 @@
 ---
-to: src/pages/<%= Name %>/index.jsx
+to: src/pages/<%= Name %>/index.js
 ---
-import React from "react";
 import { connect } from "react-redux";
 import { actions } from "./reducer";
 import View from "./View";
 
-const Container = props => <View {...props} />;
-
-const mapStateToProps = store => ({
-  <%= name %>: store.<%= name %>.list
+const mapStateToProps = state => ({
+  <%= name %>: state.<%= name %>.list
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -22,4 +19,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Container);
+)(View);
