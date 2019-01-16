@@ -1,4 +1,4 @@
-import pages from "./";
+import pages from "./pages";
 
 const getPage = name => pages[name].component;
 

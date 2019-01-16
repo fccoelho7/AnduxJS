@@ -45,29 +45,35 @@ yarn andux:new:page
 ## 📂 Structure
 
 ```bash
+├── README.md
+├── _templates
+│   └── page
+│       └── new
+├── db.json
+├── node_modules [1226 entries exceeds filelimit, not opening dir]
+├── package.json
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   └── manifest.json
 ├── src
-│   ├── components
-│   │   ├── Listable.jsx
-│   │   ├── ModalForm.jsx
-│   │   └── ProtectedRoute.jsx
 │   ├── config.js
 │   ├── index.js
-│   ├── layouts
-│   │   └── default
 │   ├── locales
 │   │   └── en.json
-│   ├── pages
-│   │   ├── Auth
-│   │   ├── Dashboard
-│   │   ├── Page404.jsx
-│   │   ├── Posts
-│   │   ├── Root.jsx
-│   │   ├── index.js
-│   │   └── routes.js
 │   ├── services
 │   │   ├── auth.js
 │   │   └── http.js
 │   ├── setupTests.js
 │   ├── store.js
-│   └── utils
+│   ├── utils
+│   │   ├── getAllReducers.js
+│   │   └── getAllReducers.test.js
+│   └── view
+│       ├── components
+│       ├── layouts
+│       ├── pages
+│       └── routes.js
+├── yarn-error.log
+└── yarn.lock
 ```

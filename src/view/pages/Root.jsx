@@ -6,7 +6,7 @@ import enUS from "antd/lib/locale-provider/en_US";
 import ProtectedRoute from "../components/ProtectedRoute";
 import Dashboard from "./Dashboard";
 import Page404 from "./Page404";
-import routes from "./routes";
+import routes from "../routes";
 
 const Root = ({ store }) => (
   <Provider store={store}>

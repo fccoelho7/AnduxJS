@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { Layout, Menu } from "antd";
 import { Link, withRouter } from "react-router-dom";
-import authService from "../../services/auth";
+import authService from "../../../services/auth";
 import "antd/dist/antd.css";
 import logo from "./logo.svg";
 

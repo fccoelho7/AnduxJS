@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { Redirect } from "react-router-dom";
-import authService from "../../services/auth";
+import authService from "../../../services/auth";
 
 import "./login.css";
 
