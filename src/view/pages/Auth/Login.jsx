@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { PureComponent } from "react";
-import { Form, Icon, Input, Button, Checkbox } from "antd";
-import { Redirect } from "react-router-dom";
-import authService from "../../../services/auth";
+import React, { PureComponent } from 'react';
+import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Redirect } from 'react-router-dom';
+import authService from '../../../services/auth';
 
-import "./login.css";
+import './login.css';
 
 class Login extends PureComponent {
   state = {
-    redirectToReferrer: false
+    redirectToReferrer: false,
   };
 
   handleSubmit = e => {
@@ -24,7 +24,7 @@ class Login extends PureComponent {
   };
 
   render() {
-    let { from } = this.props.location.state || { from: { pathname: "/" } };
+    let { from } = this.props.location.state || { from: { pathname: '/' } };
     let { redirectToReferrer } = this.state;
     const { getFieldDecorator } = this.props.form;
 
@@ -35,30 +35,30 @@ class Login extends PureComponent {
         <h1>Login</h1>
         <Form className="login-form">
           <Form.Item>
-            {getFieldDecorator("userName", {
-              initialValue: "user@example.com",
+            {getFieldDecorator('userName', {
+              initialValue: 'user@example.com',
               rules: [
-                { required: true, message: "Please input your username!" }
-              ]
+                { required: true, message: 'Please input your username!' },
+              ],
             })(
               <Input
                 prefix={
-                  <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                  <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
                 }
                 placeholder="Username"
               />
             )}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator("password", {
-              initialValue: "1234",
+            {getFieldDecorator('password', {
+              initialValue: '1234',
               rules: [
-                { required: true, message: "Please input your password!" }
-              ]
+                { required: true, message: 'Please input your password!' },
+              ],
             })(
               <Input
                 prefix={
-                  <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                  <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />
                 }
                 type="password"
                 placeholder="Password"
@@ -66,9 +66,9 @@ class Login extends PureComponent {
             )}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator("remember", {
-              valuePropName: "checked",
-              initialValue: true
+            {getFieldDecorator('remember', {
+              valuePropName: 'checked',
+              initialValue: true,
             })(<Checkbox>Remember me</Checkbox>)}
             <a className="login-form-forgot" href="#">
               Forgot password
@@ -89,4 +89,4 @@ class Login extends PureComponent {
   }
 }
 
-export default Form.create({ name: "normal_login" })(Login);
+export default Form.create({ name: 'normal_login' })(Login);

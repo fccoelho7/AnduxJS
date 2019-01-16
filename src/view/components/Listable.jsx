@@ -1,16 +1,16 @@
-import React, { PureComponent } from "react";
-import { Table, Button, Divider, Popconfirm, message } from "antd";
-import ModalForm from "./ModalForm";
+import React, { PureComponent } from 'react';
+import { Table, Button, Divider, Popconfirm, message } from 'antd';
+import ModalForm from './ModalForm';
 
 class Listable extends PureComponent {
   static ACTIONS = {
-    CREATING: "creating",
-    EDITING: "editing"
+    CREATING: 'creating',
+    EDITING: 'editing',
   };
 
   state = {
     currentAction: null,
-    formFields: {}
+    formFields: {},
   };
 
   openModal = (type, index) => {
@@ -18,7 +18,7 @@ class Listable extends PureComponent {
 
     this.setState({
       currentAction: type,
-      formFields: index != null ? data[index] : {}
+      formFields: index != null ? data[index] : {},
     });
   };
 
@@ -43,7 +43,7 @@ class Listable extends PureComponent {
 
     handleCreate(data);
 
-    setTimeout(() => message.success("Post succesfull created!"), 300);
+    setTimeout(() => message.success('Post succesfull created!'), 300);
   };
 
   onEdit = data => {
@@ -51,7 +51,7 @@ class Listable extends PureComponent {
 
     handleEdit(data);
 
-    setTimeout(() => message.success("Post succesfull edited!"), 300);
+    setTimeout(() => message.success('Post succesfull edited!'), 300);
   };
 
   onRemove = id => {
@@ -59,7 +59,7 @@ class Listable extends PureComponent {
 
     handleRemove(id);
 
-    message.success("Post succesfull deleted!");
+    message.success('Post succesfull deleted!');
   };
 
   getColumns = () => {
@@ -68,8 +68,8 @@ class Listable extends PureComponent {
     return [
       ...columns,
       {
-        title: "Action",
-        key: "action",
+        title: 'Action',
+        key: 'action',
         render: (text, record, index) => (
           <span key={record.id}>
             <Button
@@ -90,8 +90,8 @@ class Listable extends PureComponent {
               </Button>
             </Popconfirm>
           </span>
-        )
-      }
+        ),
+      },
     ];
   };
 
@@ -99,7 +99,7 @@ class Listable extends PureComponent {
     const { CREATING } = Listable.ACTIONS;
     const { currentAction } = this.state;
 
-    return currentAction === CREATING ? "Create" : "Edit";
+    return currentAction === CREATING ? 'Create' : 'Edit';
   };
 
   render() {

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import Layout from "../../layouts/default";
-import Listable from "../../components/Listable";
-import ModalForm from "./Form";
+import React, { Component } from 'react';
+import Layout from '../../layouts/default';
+import Listable from '../../components/Listable';
+import ModalForm from './Form';
 
 class View extends Component {
   componentDidMount() {
@@ -17,20 +17,20 @@ class View extends Component {
         <Listable
           columns={[
             {
-              title: "Title",
-              dataIndex: "title",
-              key: "title"
+              title: 'Title',
+              dataIndex: 'title',
+              key: 'title',
             },
             {
-              title: "Content",
-              dataIndex: "content",
-              key: "content"
+              title: 'Content',
+              dataIndex: 'content',
+              key: 'content',
             },
             {
-              title: "Category",
-              dataIndex: "category",
-              key: "category"
-            }
+              title: 'Category',
+              dataIndex: 'category',
+              key: 'category',
+            },
           ]}
           data={posts}
           Form={ModalForm}

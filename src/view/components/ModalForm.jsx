@@ -1,5 +1,5 @@
-import React, { PureComponent } from "react";
-import { Modal, Form, Button } from "antd";
+import React, { PureComponent } from 'react';
+import { Modal, Form, Button } from 'antd';
 
 class FormModal extends PureComponent {
   handleOnSubmit = () => {
@@ -33,7 +33,7 @@ class FormModal extends PureComponent {
           </Button>,
           <Button key="submit" type="primary" onClick={this.handleOnSubmit}>
             Submit
-          </Button>
+          </Button>,
         ]}
       >
         {React.cloneElement(children, { form })}

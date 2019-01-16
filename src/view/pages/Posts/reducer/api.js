@@ -1,6 +1,6 @@
-import http from "../../../../services/http";
+import http from '../../../../services/http';
 
-const namespace = "/posts";
+const namespace = '/posts';
 
 const api = {
   get() {
@@ -14,7 +14,7 @@ const api = {
   },
   remove(id) {
     return http.delete(`${namespace}/${id}`);
-  }
+  },
 };
 
 export default api;

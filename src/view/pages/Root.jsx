@@ -1,12 +1,12 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import { LocaleProvider } from "antd";
-import enUS from "antd/lib/locale-provider/en_US";
-import ProtectedRoute from "../components/ProtectedRoute";
-import Dashboard from "./Dashboard";
-import Page404 from "./Page404";
-import routes from "../routes";
+import React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { LocaleProvider } from 'antd';
+import enUS from 'antd/lib/locale-provider/en_US';
+import ProtectedRoute from '../components/ProtectedRoute';
+import Dashboard from './Dashboard';
+import Page404 from './Page404';
+import routes from '../routes';
 
 const Root = ({ store }) => (
   <Provider store={store}>

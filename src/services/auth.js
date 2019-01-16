@@ -9,7 +9,7 @@ const authService = {
   signout(cb) {
     this.isAuthenticated = false;
     cb();
-  }
+  },
 };
 
 export default authService;

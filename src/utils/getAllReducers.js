@@ -4,7 +4,7 @@ const getAllReducers = (pages = {}) => {
   Object.keys(pages).forEach(pageName => {
     const page = pages[pageName];
 
-    if (page.hasOwnProperty("reducer")) {
+    if (page.hasOwnProperty('reducer')) {
       result = { ...result, [pageName]: page.reducer };
     }
   });

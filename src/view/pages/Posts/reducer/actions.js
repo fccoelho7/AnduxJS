@@ -1,5 +1,5 @@
-import * as Types from "./types";
-import api from "./api";
+import * as Types from './types';
+import api from './api';
 
 export const fetch = () => async dispatch => {
   const { data } = await api.get();
