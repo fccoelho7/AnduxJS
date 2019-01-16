@@ -1,19 +1,21 @@
-# AnduxJS [![Build Status](https://travis-ci.org/fccoelho7/andux.svg?branch=master)](https://travis-ci.org/fccoelho7/andux)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/4829072/51246168-e1647700-1970-11e9-9279-7904e6764d87.png" width="350" />
+</p>
+<p align="center">A React + Redux modular, scalable, easy and friendly framework.</p>
+<p align="center">
+  <a href="https://travis-ci.org/fccoelho7/andux" target="_blank">
+    <img src="https://travis-ci.org/fccoelho7/andux.svg?branch=master" />
+  </a>
+</p>
 
-A React + Redux modular, scalable, easily and friendly framework.
-
-- [Main Features](#main-features)
-- [Scaffolding](#scaffolding)
-- [Structure](#structure)
-
-## Quick Overview
+## 📟 Quick Overview
 
 ```bash
 git clone git@github.com:fccoelho7/andux.git && cd andux/
 yarn && yarn start
 ```
 
-## Main features
+## 🎩 Features
 
 - [Ant Design](https://ant.design/) 😍
 - [Axios](https://github.com/axios/axios)
@@ -23,12 +25,16 @@ yarn && yarn start
 - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
 - [Redux Thunk](https://github.com/reduxjs/redux-thunk)
 
-### For Specs
+### 🐞 For Specs
 
 - [Enzyme](https://airbnb.io/enzyme/)
 - [Jest](http://jest.io)
 
-## Scaffolding
+## 🤔 Why?
+
+If you look around you'll see applications have the same behaviors, almost all have the same CRUD (create, read, update and delete) logic and for us, developers, it's boring having to create always the same architecture and functionalities.
+
+## 🚀 Scaffolding
 
 To generate new pages dynamically, just execute:
 
@@ -36,7 +42,7 @@ To generate new pages dynamically, just execute:
 yarn andux:new:page
 ```
 
-## Structure
+## 📂 Structure
 
 ```bash
 ├── src
