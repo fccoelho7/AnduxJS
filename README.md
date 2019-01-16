@@ -8,11 +8,6 @@
   </a>
 </p>
 
-- [Features](#features)
-- [Why?](#why?)
-- [Scaffolding](#scaffolding)
-- [Structure](#structure)
-
 ## 📟 Quick Overview
 
 ```bash
