@@ -21,7 +21,7 @@ class View extends Component {
           columns={[
           <% fields.forEach(function(field) { %>
             {
-              title: '<%= Field %>',
+              title: '<%= field %>',
               dataIndex: '<%= field %>',
               key: '<%= field %>'
             },

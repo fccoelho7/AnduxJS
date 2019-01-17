@@ -1,7 +1,7 @@
 ---
 to: src/view/pages/<%= Name %>/reducer/api.js
 ---
-import http from "../../../services/http";
+import http from "../../../../services/http";
 
 const namespace = "<%= endpoint %>";
 
