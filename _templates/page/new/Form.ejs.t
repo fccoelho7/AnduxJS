@@ -1,5 +1,5 @@
 ---
-to: src/pages/<%= Name %>/Form.jsx
+to: src/view/pages/<%= Name %>/Form.jsx
 ---
 import React from "react";
 import { Form, Input } from "antd";

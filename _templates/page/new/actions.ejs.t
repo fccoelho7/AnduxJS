@@ -1,5 +1,5 @@
 ---
-to: src/pages/<%= Name %>/reducer/actions.js
+to: src/view/pages/<%= Name %>/reducer/actions.js
 ---
 import api from "./api";
 import * as Types from "./types";

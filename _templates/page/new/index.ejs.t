@@ -1,5 +1,5 @@
 ---
-to: src/pages/<%= Name %>/index.js
+to: src/view/pages/<%= Name %>/index.js
 ---
 import { connect } from "react-redux";
 import { actions } from "./reducer";

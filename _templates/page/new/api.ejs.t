@@ -1,5 +1,5 @@
 ---
-to: src/pages/<%= Name %>/reducer/api.js
+to: src/view/pages/<%= Name %>/reducer/api.js
 ---
 import http from "../../../services/http";
 

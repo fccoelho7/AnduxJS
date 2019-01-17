@@ -1,5 +1,5 @@
 ---
-to: src/pages/<%= Name %>/reducer/types.js
+to: src/view/pages/<%= Name %>/reducer/types.js
 ---
 <% type = name.toUpperCase() %>
 export const FETCH = "FETCH_<%= type %>";

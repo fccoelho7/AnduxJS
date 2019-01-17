@@ -1,5 +1,5 @@
 ---
-to: src/pages/<%= Name %>/reducer/index.js
+to: src/view/pages/<%= Name %>/reducer/index.js
 ---
 import update from "immutability-helper";
 import * as Types from "./types";

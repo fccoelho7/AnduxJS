@@ -1,5 +1,5 @@
 ---
-to: src/pages/<%= Name %>/View.jsx
+to: src/view/pages/<%= Name %>/View.jsx
 ---
 import React, { Component } from "react";
 import Layout from "../../layouts/default";
@@ -21,7 +21,7 @@ class View extends Component {
           columns={[
           <% fields.forEach(function(field) { %>
             {
-              title: '<%= field %>',
+              title: '<%= Field %>',
               dataIndex: '<%= field %>',
               key: '<%= field %>'
             },

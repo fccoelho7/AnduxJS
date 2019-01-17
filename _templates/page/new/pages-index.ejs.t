@@ -1,6 +1,6 @@
 ---
 inject: true
-to: src/pages/index.js
+to: src/view/pages/index.js
 after: export
 ---
   <%= name %>: {
