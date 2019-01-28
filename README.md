@@ -3,8 +3,8 @@
 </p>
 <p align="center">A React + Redux modular, scalable, easy and friendly framework.</p>
 <p align="center">
-  <a href="https://travis-ci.org/fccoelho7/andux" target="_blank">
-    <img src="https://travis-ci.org/fccoelho7/andux.svg?branch=master" />
+  <a href="https://travis-ci.org/fccoelho7/AnduxJS" target="_blank">
+    <img src="https://travis-ci.org/fccoelho7/AnduxJS.svg?branch=master" />
   </a>
 </p>
 
